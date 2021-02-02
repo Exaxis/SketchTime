@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <link rel="stylesheet" href="./main.css">
+
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">-->
+    <title>SketchTime</title>
+  </head>
+  <body>
+
+    <div id='main-display'>
+      <div id='main-content'>
+        <div id='main-header' class='centered-content'>
+          <button type='button' id='directory-select-btn' >Choose Directory</button>
+          <button type='button' id='prev-img-btn'>Prev</button>
+          <button type='button' id='next-img-btn'>Next</button>
+          <span id='time-display'><span id='time-min'></span>:<span id='time-sec'></span></span>
+        </div>
+
+        <div id='img-display' class='centered-content'>
+          <img id='target-img'/>
+        </div>
+
+      </div>
+    </div>
+    <script src="../../controllers/renderer.js"></script>
+  </body>
+</html>
