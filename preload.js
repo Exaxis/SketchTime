@@ -12,13 +12,13 @@ contextBridge.exposeInMainWorld(
   "electron", {
       ipcSend: (channel, data) => {
           // whitelist channels
-          let validChannels = ["toMain", "directoryRequest"];
+          let validChannels = ["toMain", "directoryRequest", "close-app", "minimize-app", "restore-app", "maximize-app"];
           if (validChannels.includes(channel)) {
               ipcRenderer.send(channel, data);
           }
       },
       ipcReceive: (channel, func) => {
-          let validChannels = ["fromMain", "directoryResult"];
+          let validChannels = ["fromMain", "directoryResult", "close-app", "minimize-app", "restore-app", "maximize-app"];
           if (validChannels.includes(channel)) {
               // Deliberately strip event as it includes `sender` 
               ipcRenderer.on(channel, (event, ...args) => func(...args));

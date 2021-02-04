@@ -12,18 +12,46 @@
   </head>
   <body>
 
+    <div id='program-header' class='centered-content'>
+      <div id='app-title'>
+        <span class="helper"></span>SketchTime
+      </div>
+      <div id='app-control-buttons'>
+        <div id='app-minimize-btn'><span class="helper"></span><img src='../../assets/images/minimize-sharp-light.svg'></div><div id='app-maximize-btn'><span class="helper"></span><img src='../../assets/images/square-light.svg'></div><div id='app-restore-btn'><span class="helper"></span><img src='../../assets/images/restore-down-light.svg'></div><div id='app-close-btn'><span class="helper"></span><img  src='../../assets/images/close-icon2.svg'></div>
+      </div>
+
+    </div>
     <div id='main-display'>
       <div id='main-content'>
-        <div id='main-header' class='centered-content'>
-          <button type='button' id='directory-select-btn' >Choose Directory</button>
-          <span id='control-buttons-panel'>
-            <button type='button' id='prev-img-btn'>Prev</button>
-            <button type='button' id='stop-btn'>Stop</button>
-            <button type='menu' id='pause-btn'>Pause</button>
-            <button type='button' id='play-btn'>Play</button>
-            <button type='button' id='next-img-btn'>Next</button>
-          </span>
-          <span id='time-display'><span id='time-min'></span>:<span id='time-sec'></span></span>
+        <div id='main-header'>
+          <div id='main-header-box-1' class='main-header-box'>
+            <div id='path-container'>
+              <div id='directory-button' class='centered-content'>
+                  <img src='../../assets/images/folder.svg'>
+              </div>
+              <div id='path-text'>
+                Select an image folder
+              </div>
+            </div>
+          </div>
+          <div id='main-header-box-2' class='main-header-box centered-content'>
+            <span id='control-buttons-panel'>
+              <button type='button' id='prev-img-btn'>Prev</button>
+              <button type='button' id='stop-btn'>Stop</button>
+              <button type='menu' id='pause-btn'>Pause</button>
+              <button type='button' id='play-btn'>Play</button>
+              <button type='button' id='next-img-btn'>Next</button>
+            </span>
+          </div>
+          <div id='main-header-box-3' class='main-header-box'>
+            <div id='time-container-display' class='time-container'>
+              <span id='time-display'><div id='time-text'><span id='time-min'></span>:<span id='time-sec'></span></span></div></span>
+            </div>
+            <div id='time-container-input' class='is-hidden time-container'>
+              <span id='time-input'><input id='min-input' class='time-input-box' min="0" max="99" type="number">:<input id='sec-input' class='time-input-box' min="0" max="59" type="number"><span id='time-confirm-btn'><img id='time-confirm-img' src='../../assets/images/hollow-check-green.svg'></span></span>
+            </div>
+          </div>
+          <span class='stretch'></span>
         </div>
 
         <div id='img-display' class='centered-content'>

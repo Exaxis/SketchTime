@@ -2,8 +2,91 @@
     text-align: center;
 }
 
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
 .is-hidden{
-    display: none;
+    display: none !important;
+}
+
+.stretch {
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
+  }
+
+.time-container{
+    display: inline-block;
+    border-radius:8px;
+    text-align: center;
+    cursor: default;
+
+}
+
+.time-container-small{
+    height: 28px;
+    width: 52px;
+    transition: width 2s, height 2s;
+}
+
+.time-container-large{
+    height: 35px !important;
+    width: 130px !important;
+}
+
+.time-input-box{
+    width: 32px;
+}
+
+body{
+    margin: 0px;
+}
+
+html{
+    background-color: #2a2a2a;
+}
+
+#app-control-buttons{
+    float:right;
+    height:100%;
+    vertical-align: middle;
+}
+
+#app-control-buttons div img{
+    display:inline-block;
+    margin-left:5px;
+    margin-right:5px;
+    width:12px;
+    height:12px;
+    vertical-align:middle;
+}
+
+#app-control-buttons div{
+    display: inline-block;
+    height:100%;
+    width: 32px;
+    vertical-align: middle;
+    text-align:center;
+}
+
+#app-control-buttons div:hover{
+    background-color: #555555;
+}
+
+#app-title{
+    display:inline-block;
+    font-size: 14px;
+    color: #AAAAAA;
+    font-family:Arial, Helvetica, sans-serif;
+    width: 150px;
+    position: absolute;
+    margin-left: -75px;
+    left:50%;
+    top: 8px;
 }
 
 #control-buttons-panel{
@@ -11,26 +94,81 @@
     display: inline-block;
 }
 
-#directory-select-btn{
-    float: left;
-    margin-top: 10px;
-    margin-left: 10px;
+#directory-button{
+    display:inline-block;
+    background-color:#777777;
+    height:28px;
+    width:42px;
+    border-radius:8px;
+    cursor:pointer;
+    transition: background-color 0.4s;
+}
+
+#directory-button:hover{
+    background-color:darkcyan;
+}
+
+#directory-button img{
+    width: 24px;
+    height: 24px;
 }
 
 #img-display{
     height: 60%;
 }
 
+#main-display{
+    margin-top: 5px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
 #main-footer{
     width: 100%;
     height: 75px;
-    background-color: white;
 }
 
 #main-header{
     width: 100%;
     height: 50px;
-    background-color: white;
+    text-align: justify;
+}
+
+.main-header-box{
+    display:inline-block;
+}
+
+#main-header-box-1{
+    text-align: left;
+}
+
+#main-header-box-2{
+    position: absolute;
+    width: 150px;
+    left: 50%;
+    margin-left: -75px;
+}
+
+#main-header-box-3{
+    text-align: right;
+}
+
+#path-container{
+    position:relative;
+    left:0;
+    display:inline-block;
+}
+
+#path-text{
+    display: inline-block;
+    color: #AAAAAA;
+}
+
+#program-header{
+    width:100%;
+    height: 31px;
+    vertical-align: middle;
+    background-color:#222222;
 }
 
 #target-img{
@@ -38,9 +176,48 @@
     max-width: 100%;
 }
 
+#time-confirm-btn{
+    display:inline-block;
+    vertical-align:middle;
+    margin-left:5px;
+    cursor: pointer;
+}
+
+#time-container-display{
+    cursor: pointer;
+    background-color:#777777;
+    height: 28px;
+    width: 52px;
+    transition: background-color 0.2s;
+}
+
+#time-container-input{
+    background-color:#777777;
+    height: 28px;
+    width: 52px;
+    transition: width 0.2s, height 0.2s;
+}
+
+#time-container-display:hover{
+    background-color:darkcyan;
+}
+
+#time-confirm-img{
+    width: 24px;
+    height: 24px;
+}
+
 #time-display{
-    float: right;
-    margin-right: 10px;
-    margin-top: 10px;
+
+}
+
+#time-input{
+    display:inline-block;
+    margin-top: 3px;
+}
+
+#time-text{
+    display: inline-block;
+    vertical-align: sub;
 }
 

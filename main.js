@@ -9,13 +9,16 @@ function createWindow () {
   win = new BrowserWindow({
     width: 800,
     height: 600,
+    frame: false,
     webPreferences: {
       nodeIntegration: true, // is default value after Electron v5
       contextIsolation: true, // protect against prototype pollution
       enableRemoteModule: false, // turn off remote
       preload: path.join(__dirname, 'preload.js')
     }
-  })
+  });
+
+  //win.setMenuBarVisibility(false);
 
   // and load the index.html of the app.
   win.loadFile('./views/main/index.html')
@@ -46,9 +49,28 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+
+
 ipcMain.on('directoryRequest', async (event, arg) => {
   const result = await dialog.showOpenDialog(win, {
     properties: ['openDirectory']
   })
   win.webContents.send("directoryResult", result.filePaths[0]);
 })
+
+ipcMain.on('close-app', async (event, arg) => {
+  app.quit();
+});
+
+ipcMain.on('minimize-app', async (event, arg) => {
+  win.minimize();
+});
+
+ipcMain.on('maximize-app', async (event, arg) => {
+  win.maximize();
+});
+
+ipcMain.on('restore-app', async (event, arg) => {
+  win.restore();
+});

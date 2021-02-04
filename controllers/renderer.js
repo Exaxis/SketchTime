@@ -8,7 +8,7 @@
 // let testReq = window.electron.require('./test.js');
 // console.log(testReq.test);
 
-let baseTime = 30;  // Timer value in seconds
+let baseTime = 90;  // Timer value in seconds
 let timeRemaining = baseTime;
 
 let folderPath = '';
@@ -19,6 +19,8 @@ let fileTypeFilter = ['.jpg', '.png', '.bmp'];
 
 let playing = false;
 let paused = false;
+
+let timeInput = false;
 
 let timer;
 
@@ -197,12 +199,78 @@ function setImageSrc(src){
     document.querySelector('#target-img').setAttribute('src', src);
 }
 
+function quitApp(){
+    console.log("Ouch");
+    window.electron.ipcSend('close-app');
+}
+
+function minimizeApp(){
+    window.electron.ipcSend('minimize-app');
+}
+
+function restoreApp(){
+    window.electron.ipcSend('restore-app');
+    document.querySelector('#app-maximize-btn').classList.remove('is-hidden');
+    document.querySelector('#app-restore-btn').classList.add('is-hidden');
+}
+
+function maximizeApp(){
+    window.electron.ipcSend('maximize-app');
+    document.querySelector('#app-maximize-btn').classList.add('is-hidden');
+    document.querySelector('#app-restore-btn').classList.remove('is-hidden');
+}
+
+var switchToTimeInput = function(){
+    console.log('switch to input');
+    if(!timeInput){
+        // Regular display was clicked
+        timeInput = true;
+
+        document.querySelector('#min-input').value = Math.floor(baseTime/60);
+        document.querySelector('#sec-input').value = baseTime%60;
+
+        document.querySelector('#time-container-display').classList.add('is-hidden');
+        document.querySelector('#time-container-input').classList.remove('is-hidden');
+
+        //document.querySelector('#time-container-input').classList.remove('time-container-small');
+        document.querySelector('#time-container-input').classList.add('time-container-large');
+
+        //document.querySelector('#time-container-display').classList.remove('time-container-small');
+        document.querySelector('#time-container-display').classList.add('time-container-large');
+    }
+}
+
+function switchToTimeDisplay(){
+    console.log('switch to display');
+    if(timeInput){
+        timeInput = false;
+
+        var min = parseInt(document.querySelector('#min-input').value);
+        var sec = parseInt(document.querySelector('#sec-input').value);
+
+        baseTime = (min*60) + sec;
+        timeRemaining = baseTime;
+
+        updateTimerDisplay();
+
+        document.querySelector('#time-container-display').classList.remove('is-hidden');
+        document.querySelector('#time-container-input').classList.add('is-hidden');
+
+        //document.querySelector('#time-container-display').classList.add('time-container-small');
+        document.querySelector('#time-container-display').classList.remove('time-container-large');
+
+        //document.querySelector('#time-container-input').classList.add('time-container-small');
+        document.querySelector('#time-container-input').classList.remove('time-container-large');
+
+    }
+}
+
 function init(){
     updateTimerDisplay();
 
     updateButtonSelectionAbility();
 
-    document.querySelector('#directory-select-btn').addEventListener('click', selectImageDirectory);
+    document.querySelector('#directory-button').addEventListener('click', selectImageDirectory);
     document.querySelector('#prev-img-btn').addEventListener('click', prevImage);
     document.querySelector('#next-img-btn').addEventListener('click', nextImage);
 
@@ -210,9 +278,26 @@ function init(){
     document.querySelector('#play-btn').addEventListener('click', play);
     document.querySelector('#pause-btn').addEventListener('click', pause);
 
+    document.querySelector('#app-close-btn').addEventListener('click', quitApp);
+    document.querySelector('#app-minimize-btn').addEventListener('click', minimizeApp);
+    document.querySelector('#app-maximize-btn').addEventListener('click', maximizeApp);
+    document.querySelector('#app-restore-btn').addEventListener('click', restoreApp);
+
+    document.querySelector('#time-container-display').addEventListener('click', switchToTimeInput);
+    document.querySelector('#time-confirm-btn').addEventListener('click', switchToTimeDisplay);
+
+    document.querySelector('#app-maximize-btn').classList.remove('is-hidden');
+    document.querySelector('#app-restore-btn').classList.add('is-hidden');
+
     window.electron.ipcReceive("directoryResult", (data) => {
         if(data != null && data !== ''){
             folderPath = data;
+
+            var arr = folderPath.split('\\');
+            var name = arr[arr.length-1] || arr[arr.length-2];
+            console.log(name);
+            console.log(arr);
+            document.querySelector('#path-text').innerHTML = name;
 
             window.electron.getFilesInDirectory(folderPath, fileTypeFilter, (err, files) => {
                 /// TODO: Error handling
