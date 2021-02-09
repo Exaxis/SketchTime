@@ -12,7 +12,7 @@
   </head>
   <body>
 
-    <div id='program-header' class='centered-content'>
+    <div id='program-header' class='centered-content is-hidden'>
       <div id='app-title'>
         <span class="helper"></span>SketchTime
       </div>
@@ -26,8 +26,16 @@
         <div id='main-header'>
           <div id='main-header-box-1' class='main-header-box'>
             <div id='path-container'>
-              <div id='directory-button' class='centered-content'>
-                  <img src='../../assets/images/folder.svg'>
+              <div id='directory-button' class='centered-content clickable'>
+                  <!--<img src='../../assets/images/folder.svg'>-->
+                  <svg version="1.1" id="folder-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 100.25 100.25" style="enable-background:new 0 0 100.25 100.25;" xml:space="preserve">
+<path d="M97.197,40.597C96.914,40.221,96.47,40,96,40h-8.5v-9.327c0-0.828-0.671-1.499-1.498-1.5l-44.407-0.055l-7.179-7.179
+	c-0.281-0.281-0.663-0.439-1.061-0.439H12c-0.828,0-1.5,0.672-1.5,1.5v54c0,0.828,0.672,1.5,1.5,1.5h73.795
+	c0.731,0,1.339-0.525,1.472-1.218c0.071-0.115,0.137-0.234,0.176-0.37l10-35C97.571,41.46,97.481,40.973,97.197,40.597z
+	 M32.734,24.5l7.178,7.178c0.28,0.281,0.661,0.438,1.059,0.439L84.5,32.171V40H22c-0.67,0-1.258,0.444-1.442,1.088L13.5,65.79V24.5
+	H32.734z M84.726,75.5h-70.88L23.132,43h70.88L84.726,75.5z"/>
+</svg>
               </div>
               <div id='path-text'>
                 Select an image folder
@@ -36,22 +44,257 @@
           </div>
           <div id='main-header-box-2' class='main-header-box centered-content'>
             <span id='control-buttons-panel'>
-              <button type='button' id='prev-img-btn'>Prev</button>
-              <button type='button' id='stop-btn'>Stop</button>
-              <button type='menu' id='pause-btn'>Pause</button>
-              <button type='button' id='play-btn'>Play</button>
-              <button type='button' id='next-img-btn'>Next</button>
+              <span id='prev-img-btn' class='control-button'><svg version="1.1" id="prev-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 338.179 338.179" style="enable-background:new 0 0 338.179 338.179;" xml:space="preserve">
+             <g>
+               <g>
+                 <path d="M325.794,64.086c-4.472-2.236-14.621-4.472-27.092,4.472l-103.725,74.396c-9.03,6.795-14.621,15.826-14.621,25.974
+                   c0,10.149,5.677,19.179,14.621,25.974l103.725,74.396c6.794,5.676,13.503,6.795,18.062,6.795c4.472,0,7.913-1.118,9.03-1.118
+                   c4.472-3.354,12.385-10.149,12.385-27.092V91.178C338.179,73.116,330.353,66.322,325.794,64.086z M316.85,247.883h-0.086
+                   c0,2.236-1.118,4.472-1.118,5.676c-1.118,0-2.236-1.118-3.354-2.236l-104.842-73.277c-2.236-2.236-4.472-5.676-4.472-7.913
+                   c0-2.236,2.236-5.676,5.677-7.913l103.724-74.396c1.118-1.118,2.236-2.236,3.354-2.236c1.118,1.118,1.118,2.236,1.118,5.676
+                   V247.883z"/>
+               </g>
+             </g>
+             <g>
+               <g>
+                 <path d="M145.438,64.086c-4.472-2.236-14.621-4.472-27.092,4.472L14.621,142.954C5.591,149.749,0,158.78,0,168.929
+                   c0,10.149,5.677,19.179,14.621,25.974l103.725,74.396c6.794,5.676,13.503,6.795,18.062,6.795c4.472,0,7.913-1.118,9.03-1.118
+                   c4.472-3.354,12.385-10.149,12.385-27.092V91.178C157.823,73.116,149.91,66.322,145.438,64.086z M136.493,247.883h-0.086
+                   c0,2.236-1.118,4.472-1.118,5.676c-1.118-1.118-2.236-1.118-3.354-2.236L27.093,178.045c-2.236-2.236-4.472-5.676-4.472-7.913
+                   c0-2.236,2.236-5.676,5.677-7.913l103.724-74.396c1.118-1.118,2.236-2.236,3.354-2.236c1.118,1.118,1.118,2.236,1.118,5.676
+                   V247.883z"/>
+               </g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             </svg></span>
+              <span id='stop-btn' class='control-button'><svg id="stop-img" enable-background="new 0 0 320 320" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg"><path d="m288 0h-256c-17.632 0-32 14.368-32 32v256c0 17.632 14.368 32 32 32h256c17.632 0 32-14.368 32-32v-256c0-17.632-14.368-32-32-32z"/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/><g/></svg></span>
+              <span id='pause-btn' class='control-button'>
+                <svg version="1.1" id="pause-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 47.607 47.607" style="enable-background:new 0 0 47.607 47.607;" xml:space="preserve">
+             <g>
+               <path d="M17.991,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631C4.729,2.969,7.698,0,11.36,0
+                 l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z"/>
+               <path d="M42.877,40.976c0,3.662-2.969,6.631-6.631,6.631l0,0c-3.662,0-6.631-2.969-6.631-6.631V6.631
+                 C29.616,2.969,32.585,0,36.246,0l0,0c3.662,0,6.631,2.969,6.631,6.631V40.976z"/>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             </svg>
+             </span>
+              <span id='play-btn' class='control-button'>
+                <svg version="1.1" id="play-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                width="163.861px" height="163.861px" viewBox="0 0 163.861 163.861" style="enable-background:new 0 0 163.861 163.861;"
+                xml:space="preserve">
+             <g>
+               <path d="M34.857,3.613C20.084-4.861,8.107,2.081,8.107,19.106v125.637c0,17.042,11.977,23.975,26.75,15.509L144.67,97.275
+                 c14.778-8.477,14.778-22.211,0-30.686L34.857,3.613z"/>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             </svg></span>
+              <span id='next-img-btn' class='control-button'>
+                <svg version="1.1" id="next-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 338.179 338.179" style="enable-background:new 0 0 338.179 338.179;" xml:space="preserve">
+             <g>
+               <g>
+                 <path d="M325.794,64.086c-4.472-2.236-14.621-4.472-27.092,4.472l-103.725,74.396c-9.03,6.795-14.621,15.826-14.621,25.974
+                   c0,10.149,5.677,19.179,14.621,25.974l103.725,74.396c6.794,5.676,13.503,6.795,18.062,6.795c4.472,0,7.913-1.118,9.03-1.118
+                   c4.472-3.354,12.385-10.149,12.385-27.092V91.178C338.179,73.116,330.353,66.322,325.794,64.086z M316.85,247.883h-0.086
+                   c0,2.236-1.118,4.472-1.118,5.676c-1.118,0-2.236-1.118-3.354-2.236l-104.842-73.277c-2.236-2.236-4.472-5.676-4.472-7.913
+                   c0-2.236,2.236-5.676,5.677-7.913l103.724-74.396c1.118-1.118,2.236-2.236,3.354-2.236c1.118,1.118,1.118,2.236,1.118,5.676
+                   V247.883z"/>
+               </g>
+             </g>
+             <g>
+               <g>
+                 <path d="M145.438,64.086c-4.472-2.236-14.621-4.472-27.092,4.472L14.621,142.954C5.591,149.749,0,158.78,0,168.929
+                   c0,10.149,5.677,19.179,14.621,25.974l103.725,74.396c6.794,5.676,13.503,6.795,18.062,6.795c4.472,0,7.913-1.118,9.03-1.118
+                   c4.472-3.354,12.385-10.149,12.385-27.092V91.178C157.823,73.116,149.91,66.322,145.438,64.086z M136.493,247.883h-0.086
+                   c0,2.236-1.118,4.472-1.118,5.676c-1.118-1.118-2.236-1.118-3.354-2.236L27.093,178.045c-2.236-2.236-4.472-5.676-4.472-7.913
+                   c0-2.236,2.236-5.676,5.677-7.913l103.724-74.396c1.118-1.118,2.236-2.236,3.354-2.236c1.118,1.118,1.118,2.236,1.118,5.676
+                   V247.883z"/>
+               </g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             </svg></span>
             </span>
+            <div id='status-display'>
+
+            </div>
           </div>
           <div id='main-header-box-3' class='main-header-box'>
-            <div id='time-container-display' class='time-container'>
+            <div id='time-container-display' class='time-container clickable'>
               <span id='time-display'><div id='time-text'><span id='time-min'></span>:<span id='time-sec'></span></span></div></span>
             </div>
             <div id='time-container-input' class='is-hidden time-container'>
-              <span id='time-input'><input id='min-input' class='time-input-box' min="0" max="99" type="number">:<input id='sec-input' class='time-input-box' min="0" max="59" type="number"><span id='time-confirm-btn'><img id='time-confirm-img' src='../../assets/images/hollow-check-green.svg'></span></span>
+              <span id='time-input'><input id='min-input' class='time-input-box' min="0" max="99" type="number">:<input id='sec-input' class='time-input-box' min="0" max="59" type="number"><span id='time-confirm-btn'>
+                <svg version="1.1" id="time-confirm-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+             <g>
+               <g>
+                 <path d="M497.36,69.995c-7.532-7.545-19.753-7.558-27.285-0.032L238.582,300.845l-83.522-90.713
+                   c-7.217-7.834-19.419-8.342-27.266-1.126c-7.841,7.217-8.343,19.425-1.126,27.266l97.126,105.481
+                   c3.557,3.866,8.535,6.111,13.784,6.22c0.141,0.006,0.277,0.006,0.412,0.006c5.101,0,10.008-2.026,13.623-5.628L497.322,97.286
+                   C504.873,89.761,504.886,77.54,497.36,69.995z"/>
+               </g>
+             </g>
+             <g>
+               <g>
+                 <path d="M492.703,236.703c-10.658,0-19.296,8.638-19.296,19.297c0,119.883-97.524,217.407-217.407,217.407
+                   c-119.876,0-217.407-97.524-217.407-217.407c0-119.876,97.531-217.407,217.407-217.407c10.658,0,19.297-8.638,19.297-19.296
+                   C275.297,8.638,266.658,0,256,0C114.84,0,0,114.84,0,256c0,141.154,114.84,256,256,256c141.154,0,256-114.846,256-256
+                   C512,245.342,503.362,236.703,492.703,236.703z"/>
+               </g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             <g>
+             </g>
+             </svg></span></span>
             </div>
           </div>
-          <span class='stretch'></span>
+          <!--<span class='stretch'></span>-->
         </div>
 
         <div id='img-display' class='centered-content'>

@@ -15,7 +15,7 @@ let folderPath = '';
 let fileList = [];
 let fileIndex = 0;
 
-let fileTypeFilter = ['.jpg', '.png', '.bmp'];
+let fileTypeFilter = ['.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff', ];
 
 let playing = false;
 let paused = false;
@@ -25,7 +25,21 @@ let timeInput = false;
 let timer;
 
 function selectImageDirectory(){
-    window.electron.ipcSend('directoryRequest');
+    if(!playing){
+        window.electron.ipcSend('directoryRequest');
+    }
+}
+
+function updateBodySizeToWindow(){
+    //let winSize = window.electron.getWindowDimensions();
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+
+    document.querySelector('body').style.maxHeight = height.toString()+"px";
+    document.querySelector('body').style.maxWidth = width.toString()+"px";
+
+    document.querySelector('#target-img').style.maxHeight = (height-150).toString()+"px";
 }
 
 function updateTimerDisplay(){
@@ -34,6 +48,15 @@ function updateTimerDisplay(){
 
     document.querySelector('#time-min').innerHTML = timeValueToString(timeMin);
     document.querySelector('#time-sec').innerHTML = timeValueToString(timeSec);
+}
+
+function updateStatusDisplay(){
+    if(fileList != null && fileList.length > 0){
+        var num = fileIndex+1;
+        document.querySelector('#status-display').innerHTML = "Image " + num + " of " + fileList.length;
+    } else {
+        document.querySelector('#status-display').innerHTML = "No images in directory";
+    }
 }
 
 function timeValueToString(value){
@@ -59,6 +82,7 @@ function nextImage(){
         stop();
 
         updateButtonSelectionAbility();
+        updateStatusDisplay();
     }
 }
 
@@ -69,12 +93,16 @@ function prevImage(){
         stop();
 
         updateButtonSelectionAbility();
+        updateStatusDisplay();
     }
 }
 
 function play(){
-    if(!playing){
+    if(!playing && fileList != null && fileList.length > 0){
         playing = true;
+
+        document.querySelector('#time-container-display').classList.remove('clickable');
+        document.querySelector('#directory-button').classList.remove('clickable');
 
         getCurrentFile();
 
@@ -91,6 +119,10 @@ function play(){
 
                     clearImage();
                     clearInterval(timer);
+
+                    document.querySelector('#time-container-display').classList.add('clickable');
+                    document.querySelector('#directory-button').classList.add('clickable');
+
                     updateButtonSelectionAbility();
 
                     if(fileList != null && fileList.length > 0){
@@ -99,6 +131,7 @@ function play(){
                         } else if(fileIndex == fileList.length-1){
                             fileIndex = 0;
                         }
+                        updateStatusDisplay();
                     }
                 }
 
@@ -114,6 +147,9 @@ function play(){
 
 function stop(){
     clearInterval(timer);
+
+    document.querySelector('#time-container-display').classList.add('clickable');
+    document.querySelector('#directory-button').classList.add('clickable');
 
     timeRemaining = baseTime;
     playing = false;
@@ -162,6 +198,9 @@ function updateButtonSelectionAbility(){
 
     if(fileList != null && fileList.length > 0){
         document.querySelector('#play-btn').disabled = false;
+        document.querySelectorAll('.control-button').forEach(function(item) {
+            item.classList.add('clickable');
+        });
         if(fileIndex > 0){
             document.querySelector('#prev-img-btn').disabled = false;
         } else {
@@ -173,6 +212,10 @@ function updateButtonSelectionAbility(){
             document.querySelector('#next-img-btn').disabled = true;
         }
     } else {
+        document.querySelectorAll('.control-button').forEach(function(item) {
+            item.classList.remove('clickable');
+        });
+
         document.querySelector('#prev-img-btn').disabled = true;
         document.querySelector('#next-img-btn').disabled = true;
         document.querySelector('#play-btn').disabled = true;
@@ -200,7 +243,6 @@ function setImageSrc(src){
 }
 
 function quitApp(){
-    console.log("Ouch");
     window.electron.ipcSend('close-app');
 }
 
@@ -221,8 +263,8 @@ function maximizeApp(){
 }
 
 var switchToTimeInput = function(){
-    console.log('switch to input');
-    if(!timeInput){
+
+    if(!timeInput && !playing){
         // Regular display was clicked
         timeInput = true;
 
@@ -241,7 +283,6 @@ var switchToTimeInput = function(){
 }
 
 function switchToTimeDisplay(){
-    console.log('switch to display');
     if(timeInput){
         timeInput = false;
 
@@ -286,6 +327,8 @@ function init(){
     document.querySelector('#time-container-display').addEventListener('click', switchToTimeInput);
     document.querySelector('#time-confirm-btn').addEventListener('click', switchToTimeDisplay);
 
+    window.addEventListener('resize', updateBodySizeToWindow);
+
     document.querySelector('#app-maximize-btn').classList.remove('is-hidden');
     document.querySelector('#app-restore-btn').classList.add('is-hidden');
 
@@ -295,13 +338,13 @@ function init(){
 
             var arr = folderPath.split('\\');
             var name = arr[arr.length-1] || arr[arr.length-2];
-            console.log(name);
-            console.log(arr);
+
             document.querySelector('#path-text').innerHTML = name;
 
             window.electron.getFilesInDirectory(folderPath, fileTypeFilter, (err, files) => {
                 /// TODO: Error handling
                 populateFiles(files);
+                updateStatusDisplay();
             });
             
         }

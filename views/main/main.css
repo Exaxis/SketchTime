@@ -2,6 +2,38 @@
     text-align: center;
 }
 
+.clickable{
+
+}
+
+.control-button{
+    display: inline-block;
+    background-color:#777777;
+    width: 42px;
+    height: 32px;
+    border-radius: 2px;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    transition: background-color 0.2s;
+}
+
+.control-button.clickable:hover {
+    background-color:darkcyan;
+}
+
+.control-button.clickable:hover svg{
+    fill:#DDDDDD;
+}
+
+.control-button svg{
+    width: 21px;
+    height: 21px;
+    fill: #151515;
+    margin-top: 5px;
+    transition: fill 0.2s;
+}
+
 .helper {
     display: inline-block;
     height: 100%;
@@ -50,45 +82,6 @@ html{
     background-color: #2a2a2a;
 }
 
-#app-control-buttons{
-    float:right;
-    height:100%;
-    vertical-align: middle;
-}
-
-#app-control-buttons div img{
-    display:inline-block;
-    margin-left:5px;
-    margin-right:5px;
-    width:12px;
-    height:12px;
-    vertical-align:middle;
-}
-
-#app-control-buttons div{
-    display: inline-block;
-    height:100%;
-    width: 32px;
-    vertical-align: middle;
-    text-align:center;
-}
-
-#app-control-buttons div:hover{
-    background-color: #555555;
-}
-
-#app-title{
-    display:inline-block;
-    font-size: 14px;
-    color: #AAAAAA;
-    font-family:Arial, Helvetica, sans-serif;
-    width: 150px;
-    position: absolute;
-    margin-left: -75px;
-    left:50%;
-    top: 8px;
-}
-
 #control-buttons-panel{
     margin-top: 10px;
     display: inline-block;
@@ -100,17 +93,24 @@ html{
     height:28px;
     width:42px;
     border-radius:8px;
-    cursor:pointer;
+    cursor:not-allowed;
     transition: background-color 0.4s;
 }
 
-#directory-button:hover{
+#directory-button.clickable:hover{
     background-color:darkcyan;
+    cursor:pointer;
 }
 
-#directory-button img{
+#directory-button.clickable:hover #folder-img{
+    fill:#DDDDDD;
+}
+
+#folder-img{
     width: 24px;
     height: 24px;
+    fill: #222222;
+    transition: fill 0.2s;
 }
 
 #img-display{
@@ -131,7 +131,7 @@ html{
 #main-header{
     width: 100%;
     height: 50px;
-    text-align: justify;
+    margin-bottom: 13px;
 }
 
 .main-header-box{
@@ -144,13 +144,19 @@ html{
 
 #main-header-box-2{
     position: absolute;
-    width: 150px;
+    width: 250px;
     left: 50%;
-    margin-left: -75px;
+    margin-left: -125px;
 }
 
 #main-header-box-3{
     text-align: right;
+    position: absolute;
+    right: 5px;
+}
+
+#next-img{
+    transform: scaleX(-1);
 }
 
 #path-container{
@@ -164,11 +170,11 @@ html{
     color: #AAAAAA;
 }
 
-#program-header{
-    width:100%;
-    height: 31px;
-    vertical-align: middle;
-    background-color:#222222;
+#status-display{
+    color: #AAAAAA;
+    font-style:italic;
+    font-size:11px;
+    margin-top: 3px;
 }
 
 #target-img{
@@ -183,12 +189,37 @@ html{
     cursor: pointer;
 }
 
+#time-confirm-img{
+    height: 24px;
+    width: 24px;
+    fill:#AAAAAA;
+    transition: fill 0.2s;
+}
+
 #time-container-display{
-    cursor: pointer;
+    cursor: not-allowed;
     background-color:#777777;
     height: 28px;
     width: 52px;
     transition: background-color 0.2s;
+}
+
+#time-container-display.clickable:hover{
+    background-color:darkcyan;
+    cursor: pointer;
+}
+
+#time-confirm-btn:hover #time-confirm-img{
+    fill:limegreen;
+}
+
+#time-container-display #time-display{
+    color: black;
+    transition: color 0.2s;
+}
+
+#time-container-display.clickable:hover #time-display{
+    color: #DDDDDD;
 }
 
 #time-container-input{
@@ -196,15 +227,6 @@ html{
     height: 28px;
     width: 52px;
     transition: width 0.2s, height 0.2s;
-}
-
-#time-container-display:hover{
-    background-color:darkcyan;
-}
-
-#time-confirm-img{
-    width: 24px;
-    height: 24px;
 }
 
 #time-display{

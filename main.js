@@ -9,7 +9,7 @@ function createWindow () {
   win = new BrowserWindow({
     width: 800,
     height: 600,
-    frame: false,
+    //frame: false,
     webPreferences: {
       nodeIntegration: true, // is default value after Electron v5
       contextIsolation: true, // protect against prototype pollution
@@ -18,7 +18,7 @@ function createWindow () {
     }
   });
 
-  //win.setMenuBarVisibility(false);
+  win.setMenuBarVisibility(false);
 
   // and load the index.html of the app.
   win.loadFile('./views/main/index.html')
