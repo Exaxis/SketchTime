@@ -19,13 +19,14 @@ let fileTypeFilter = ['.jpg', '.jpeg', '.png', '.bmp' ];
 
 let playing = false;
 let paused = false;
+let shuffled = false;
 
 let timeInput = false;
 
 let timer;
 
 function selectImageDirectory(){
-    if(!playing){
+    if(!playing && !timeInput){
         window.electron.ipcSend('directoryRequest');
     }
 }
@@ -72,10 +73,36 @@ function resetTimer(){
 }
 
 function getImageList(){
-
+    window.electron.getFilesInDirectory(folderPath, fileTypeFilter, (err, files) => {
+        /// TODO: Error handling
+        populateFiles(files);
+        updateStatusDisplay();
+    });
 }
 
+function shuffleImageList(){
+    let currentIndex = fileList.length, temporaryValue, randomIndex;
+    
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+    
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+    
+        // And swap it with the current element.
+        temporaryValue = fileList[currentIndex];
+        fileList[currentIndex] = fileList[randomIndex];
+        fileList[randomIndex] = temporaryValue;
+    }
+}
+
+
 function nextImage(){
+    if(timeInput){
+        return;
+    }
+
     if(fileList != null && fileIndex < fileList.length-1){
         fileIndex++;
 
@@ -87,6 +114,10 @@ function nextImage(){
 }
 
 function prevImage(){
+    if(timeInput){
+        return;
+    }
+
     if(fileList != null && fileIndex > 0){
         fileIndex--;
 
@@ -98,11 +129,15 @@ function prevImage(){
 }
 
 function play(){
+    if(timeInput){
+        return;
+    }
     if(!playing && fileList != null && fileList.length > 0){
         playing = true;
 
         document.querySelector('#time-container-display').classList.remove('clickable');
         document.querySelector('#directory-button').classList.remove('clickable');
+        document.querySelector('#shuffle-btn').classList.remove('clickable');
 
         getCurrentFile();
 
@@ -146,10 +181,15 @@ function play(){
 }
 
 function stop(){
+    if(timeInput){
+        return;
+    }
+
     clearInterval(timer);
 
     document.querySelector('#time-container-display').classList.add('clickable');
     document.querySelector('#directory-button').classList.add('clickable');
+    document.querySelector('#shuffle-btn').classList.add('clickable');
 
     timeRemaining = baseTime;
     playing = false;
@@ -169,8 +209,33 @@ function pause(){
     }
 }
 
+function shuffleClicked(){
+    if(timeInput){
+        return;
+    }
+
+    if(fileList != null && fileList.length > 0 && !playing){
+        if(!shuffled){
+            shuffled = true;
+
+            shuffleImageList();
+            fileIndex = 0;
+
+            document.querySelector('#shuffle-btn').classList.add('toggled-on');
+        } else {
+            shuffled = false;
+
+            getImageList();
+
+            document.querySelector('#shuffle-btn').classList.remove('toggled-on');
+        }
+    }
+}
+
 function populateFiles(files){
     fileList = files;
+
+    fileIndex = 0;
 
     updateButtonSelectionAbility();
 }
@@ -196,11 +261,12 @@ function updateButtonSelectionAbility(){
         document.querySelector('#stop-btn').classList.add('is-hidden');
     }
 
-    if(fileList != null && fileList.length > 0){
+    if(fileList != null && fileList.length > 0 && !timeInput){
         document.querySelector('#play-btn').disabled = false;
         document.querySelectorAll('.control-button').forEach(function(item) {
             item.classList.add('clickable');
         });
+
         if(fileIndex > 0){
             document.querySelector('#prev-img-btn').disabled = false;
         } else {
@@ -220,6 +286,12 @@ function updateButtonSelectionAbility(){
         document.querySelector('#next-img-btn').disabled = true;
         document.querySelector('#play-btn').disabled = true;
 
+    }
+
+    if(fileList != null && fileList.length > 0 && !playing && !timeInput){
+        document.querySelector('#shuffle-btn').classList.add('clickable');
+    } else {
+        document.querySelector('#shuffle-btn').classList.remove('clickable');
     }
 }
 
@@ -279,6 +351,10 @@ var switchToTimeInput = function(){
 
         //document.querySelector('#time-container-display').classList.remove('time-container-small');
         document.querySelector('#time-container-display').classList.add('time-container-large');
+
+        document.querySelector('#directory-button').classList.remove('clickable');
+
+        updateButtonSelectionAbility();
     }
 }
 
@@ -303,6 +379,10 @@ function switchToTimeDisplay(){
         //document.querySelector('#time-container-input').classList.add('time-container-small');
         document.querySelector('#time-container-input').classList.remove('time-container-large');
 
+        updateButtonSelectionAbility();
+
+        document.querySelector('#directory-button').classList.add('clickable');
+
     }
 }
 
@@ -318,6 +398,7 @@ function init(){
     document.querySelector('#stop-btn').addEventListener('click', stop);
     document.querySelector('#play-btn').addEventListener('click', play);
     document.querySelector('#pause-btn').addEventListener('click', pause);
+    document.querySelector('#shuffle-btn').addEventListener('click', shuffleClicked);
 
     document.querySelector('#app-close-btn').addEventListener('click', quitApp);
     document.querySelector('#app-minimize-btn').addEventListener('click', minimizeApp);
@@ -341,11 +422,7 @@ function init(){
 
             document.querySelector('#path-text').innerHTML = name;
 
-            window.electron.getFilesInDirectory(folderPath, fileTypeFilter, (err, files) => {
-                /// TODO: Error handling
-                populateFiles(files);
-                updateStatusDisplay();
-            });
+            getImageList();
             
         }
     })

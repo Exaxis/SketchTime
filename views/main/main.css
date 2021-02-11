@@ -6,6 +6,42 @@
 
 }
 
+
+.toggle-button{
+    display: inline-block;
+    background-color:#777777;
+    width: 42px;
+    height: 32px;
+    border-radius: 1px;
+    border-color: #444444;
+    border-width: 3px;
+    border-style: solid;
+    cursor: not-allowed;
+    transition: background-color 0.2s;
+}
+
+.toggle-button.clickable {
+    cursor: default;
+}
+
+.toggle-button.clickable:hover {
+    background-color:darkcyan;
+    border-color:#AAAAAA
+}
+
+.toggle-button svg{
+    width: 21px;
+    height: 21px;
+    fill: #252525;
+    margin-top: 5px;
+    transition: fill 0.2s;
+}
+
+.toggle-button.toggled-on svg{
+    fill: #FFFFFF;
+}
+
+
 .control-button{
     display: inline-block;
     background-color:#777777;
@@ -200,9 +236,9 @@ html{
 
 #main-header-box-2{
     position: absolute;
-    width: 250px;
+    width: 320px;
     left: 50%;
-    margin-left: -125px;
+    margin-left: -160px;
 }
 
 #main-header-box-3{
