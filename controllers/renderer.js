@@ -15,7 +15,7 @@ let folderPath = '';
 let fileList = [];
 let fileIndex = 0;
 
-let fileTypeFilter = ['.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff', ];
+let fileTypeFilter = ['.jpg', '.jpeg', '.png', '.bmp' ];
 
 let playing = false;
 let paused = false;
