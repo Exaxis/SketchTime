@@ -220,12 +220,14 @@ function shuffleClicked(){
 
             shuffleImageList();
             fileIndex = 0;
+            updateStatusDisplay();
 
             document.querySelector('#shuffle-btn').classList.add('toggled-on');
         } else {
             shuffled = false;
 
             getImageList();
+            
 
             document.querySelector('#shuffle-btn').classList.remove('toggled-on');
         }
@@ -234,6 +236,10 @@ function shuffleClicked(){
 
 function populateFiles(files){
     fileList = files;
+
+    if(shuffled){
+        shuffleImageList();
+    }
 
     fileIndex = 0;
 
